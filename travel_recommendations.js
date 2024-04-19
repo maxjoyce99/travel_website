@@ -11,7 +11,7 @@ async function fetchLocations() {
 function submitSearch () {
     console.log("Searching");
     var searchString = document.getElementById("search_bar").value.toLowerCase();
-    var searchResults;
+    var searchResults = "";
     if(searchString == "beach" || searchString == "beaches"){
         searchResults = available_destinations.beaches;
         console.log(searchResults);
@@ -36,15 +36,24 @@ function displayPlaces (results) {
     resultDiv.innerHTML = "";
     results.forEach((place) => resultDiv.innerHTML += `<h3>${place.name}</h3> <br>
     <p>${place.description}</p> 
-    <img src="./${place.imageUrl}"></img>`);
+    <img src="./images/${place.imageUrl}"></img>`);
 }
 
 function displayCountries (results) {
     var resultDiv = document.getElementById('results');
     resultDiv.innerHTML = "";
-    results.forEach((place) => 
-        resultDiv.innerHTML += `<h3>${place.name}</h3> <br>`
-    );
+
+    for(var i =0; i < results.length -1; i++){
+        resultDiv.innerHTML += `<h3>${results[i].name}</h3> <br>
+        <h5>Cities:</h5>`;
+        results[i].cities.forEach((city) => 
+        
+        resultDiv.innerHTML += `<p>${city.name}</p> 
+        <p>${city.description}</p>
+        <img src="./images/${city.imageUrl}"></img>`);
+   }
 }
+
+
 
 window.onload(fetchLocations());
