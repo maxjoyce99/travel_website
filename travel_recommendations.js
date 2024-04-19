@@ -27,16 +27,20 @@ function submitSearch () {
         console.log(searchResults);
         displayCountries(searchResults);
     }
-
-    
 }
 
 function displayPlaces (results) {
     var resultDiv = document.getElementById('results');
-    resultDiv.innerHTML = "";
-    results.forEach((place) => resultDiv.innerHTML += `<h3>${place.name}</h3> <br>
+    //resultDiv.innerHTML = "";
+    results.forEach((place) => resultDiv.innerHTML += `<h3>${place.name}</h3> <br></br>
     <p>${place.description}</p> 
     <img src="./images/${place.imageUrl}"></img>`);
+}
+
+function clearResults() {
+    console.log("Clearing");
+    var resultDiv = document.getElementById('results');
+    resultDiv.innerHTML = "";
 }
 
 function displayCountries (results) {
@@ -46,14 +50,12 @@ function displayCountries (results) {
     for(var i =0; i < results.length -1; i++){
         resultDiv.innerHTML += `<h3>${results[i].name}</h3> <br>
         <h5>Cities:</h5>`;
-        results[i].cities.forEach((city) => 
         
-        resultDiv.innerHTML += `<p>${city.name}</p> 
+        results[i].cities.forEach((city) =>  resultDiv.innerHTML += `<p>${city.name}</p> 
         <p>${city.description}</p>
         <img src="./images/${city.imageUrl}"></img>`);
    }
 }
-
 
 
 window.onload(fetchLocations());
