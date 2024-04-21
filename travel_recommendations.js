@@ -31,7 +31,7 @@ function submitSearch () {
 
 function displayPlaces (results) {
     var resultDiv = document.getElementById('results');
-    //resultDiv.innerHTML = "";
+    resultDiv.innerHTML = "";
     results.forEach((place) => resultDiv.innerHTML += `<h3>${place.name}</h3> <br></br>
     <p>${place.description}</p> 
     <img src="./images/${place.imageUrl}"></img>`);
